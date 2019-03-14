@@ -22,14 +22,24 @@ namespace WebApplication4.Controllers
             return View();
         }
 
+        public ActionResult GetCities(Guid countryId)
+        {
+            using (var db = new ApplicationDbContext())
+            {
+                var cities = db.Cities.Where(c => c.CountryId == countryId).OrderBy(o => o.Name).Select(x => new { x.Id, x.Name }).ToList();
+                return Json(cities);
+            }
+        }
+
         public ActionResult Contact()
         {
+            var feedback = new Feedback();
             ViewBag.Message = "Your contact page.";
             using (var db = new ApplicationDbContext()) {
                 ViewBag.CountryId = new SelectList(db.Countries.OrderBy(c => c.Name).ToList(), "Id", "Name");
-                ViewBag.CityId = new SelectList(db.Cities.OrderBy(c => c.Name).ToList(),"Id","Name");
+                ViewBag.CityId = new SelectList(db.Cities.OrderBy(c => c.Name).Where(w => w.CountryId == feedback.CountryId).ToList(),"Id","Name");
             }
-            return View();
+            return View(feedback);
         }
 
         [HttpPost]

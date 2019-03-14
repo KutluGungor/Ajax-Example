@@ -101,7 +101,25 @@
 @section scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script>
-    $(document).ready(function () {
+        $(document).ready(function () {
+            // ülke değiştiğinde..
+            $("#CountryId").change(function () {
+
+                // seçili ülkenin şehirleri getir
+                $.post("@Url.Action("GetCities")", { countryId: $("#CountryId").val() },
+                    function (data) {
+                        // gelen şehirleri selecte aktar
+
+                        // önce şehir selectini temizle
+                        $("#CityId").empty();
+                        $("#CityId").append('<option value="">Şehir seçiniz</option>');
+                        // döngüyle gelen şehir datasına şehir selectine ekle
+                        $.each(data, function (index, value) {
+                            $("#CityId").append('<option value="' + value.Id + '">' + value.Name + '</option>');
+                        });
+                });
+            });
+
         $("#contactForm").submit(function () {
             if ($("#contactForm").valid()) {
                 var formData = new FormData($("form")[0]); 
