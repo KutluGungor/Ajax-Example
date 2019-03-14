@@ -24,10 +24,18 @@ namespace WebApplication4.Models
         [Phone]
         [Display(Name = "Telefon")]
         public string Phone { get; set; }
+
+        [Display(Name = "Ülke")]
+        public Guid? CountryId { get; set; }
+        [Display(Name = "Ülke")]
+        [ForeignKey("CountryId")]
+        public virtual Country Country { get; set; }
+
         [Required]
         [Display(Name = "Şehir")]
-        public Guid CityId { get; set; }
+        public Guid? CityId { get; set; }
         [ForeignKey("CityId")]
+        [Display(Name = "Şehir")]
         public virtual City City { get; set; }
         [Required]
         [DataType(DataType.MultilineText)]

@@ -141,8 +141,13 @@
     <Compile Include="Migrations\201903130843320_InitialCreate.Designer.cs">
       <DependentUpon>201903130843320_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903140654508_AddCountry.cs" />
+    <Compile Include="Migrations\201903140654508_AddCountry.Designer.cs">
+      <DependentUpon>201903140654508_AddCountry.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\City.cs" />
+    <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Feedback.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -205,6 +210,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201903130843320_InitialCreate.resx">
       <DependentUpon>201903130843320_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903140654508_AddCountry.resx">
+      <DependentUpon>201903140654508_AddCountry.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
