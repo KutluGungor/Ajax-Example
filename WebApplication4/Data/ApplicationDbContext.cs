@@ -12,6 +12,6 @@ namespace WebApplication4.Data
         public ApplicationDbContext() : base("name=DefaultConnection") { }
         public virtual DbSet<Feedback> Feedbacks { get; set; }
         public virtual DbSet<City> Cities { get; set; }
-
+        public virtual DbSet<Country> Countries { get; set; }
     }
 }
