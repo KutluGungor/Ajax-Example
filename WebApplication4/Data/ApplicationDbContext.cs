@@ -13,5 +13,6 @@ namespace WebApplication4.Data
         public virtual DbSet<Feedback> Feedbacks { get; set; }
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
+        public virtual DbSet<District> Districts { get; set; }
     }
 }

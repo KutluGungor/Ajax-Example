@@ -19,9 +19,11 @@ namespace WebApplication4.Models
         public string Name { get; set; }
         public virtual ICollection<Feedback> Feedbacks { get; set; }
         [Display(Name = "Ülke" )]
-        public Guid CountryId { get; set; }
+        public Guid? CountryId { get; set; }
         [ForeignKey("CountryId")]
         [Display(Name = "Ülke")]
         public virtual Country Country { get; set; }
+
+        public virtual ICollection<District> Districts { get; set; }
     }
 }

@@ -79,6 +79,14 @@
             </div>
 
             <div class="form-group">
+                @Html.LabelFor(model => model.DistrictId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("DistrictId", null, "İlçe seçiniz", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.DistrictId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
                 @Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Message, new { htmlAttributes = new { @class = "form-control" } })
@@ -104,7 +112,14 @@
         $(document).ready(function () {
             // ülke değiştiğinde..
             $("#CountryId").change(function () {
+                LoadCities();
+            });
 
+            $("#CityId").change(function () {
+                LoadDistricts();
+            });
+
+            function LoadCities() {
                 // seçili ülkenin şehirleri getir
                 $.post("@Url.Action("GetCities")", { countryId: $("#CountryId").val() },
                     function (data) {
@@ -117,8 +132,21 @@
                         $.each(data, function (index, value) {
                             $("#CityId").append('<option value="' + value.Id + '">' + value.Name + '</option>');
                         });
+                        LoadDistricts();
                 });
-            });
+            }
+            function LoadDistricts() {
+                $.post("@Url.Action("GetDistricts")", { cityId: $("#CityId").val() },
+                    function (data) {
+                        // önce ilçe selectini temizle
+                        $("#DistrictId").empty();
+                        $("#DistrictId").append('<option value="">İlçe seçiniz</option>');
+                        // döngüyle gelen ilçe datasına ilçe selectine ekle
+                        $.each(data, function (index, value) {
+                            $("#DistrictId").append('<option value="' + value.Id + '">' + value.Name + '</option>');
+                        });
+                });
+            }
 
         $("#contactForm").submit(function () {
             if ($("#contactForm").valid()) {

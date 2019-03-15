@@ -22,12 +22,21 @@ namespace WebApplication4.Controllers
             return View();
         }
 
-        public ActionResult GetCities(Guid countryId)
+        public ActionResult GetCities(Guid? countryId)
         {
             using (var db = new ApplicationDbContext())
             {
                 var cities = db.Cities.Where(c => c.CountryId == countryId).OrderBy(o => o.Name).Select(x => new { x.Id, x.Name }).ToList();
                 return Json(cities);
+            }
+        }
+
+        public ActionResult GetDistricts(Guid? cityId)
+        {
+            using (var db = new ApplicationDbContext())
+            {
+                var districts = db.Districts.Where(c => c.CityId == cityId).OrderBy(o => o.Name).Select(x => new { x.Id, x.Name }).ToList();
+                return Json(districts);
             }
         }
 
@@ -38,6 +47,7 @@ namespace WebApplication4.Controllers
             using (var db = new ApplicationDbContext()) {
                 ViewBag.CountryId = new SelectList(db.Countries.OrderBy(c => c.Name).ToList(), "Id", "Name");
                 ViewBag.CityId = new SelectList(db.Cities.OrderBy(c => c.Name).Where(w => w.CountryId == feedback.CountryId).ToList(),"Id","Name");
+                ViewBag.DistrictId = new SelectList(db.Districts.OrderBy(c => c.Name).Where(w => w.CityId == feedback.CityId).ToList(), "Id", "Name");
             }
             return View(feedback);
         }

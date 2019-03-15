@@ -149,9 +149,14 @@
     <Compile Include="Migrations\201903140730186_CountryChange.Designer.cs">
       <DependentUpon>201903140730186_CountryChange.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903150650302_AddDistrict.cs" />
+    <Compile Include="Migrations\201903150650302_AddDistrict.Designer.cs">
+      <DependentUpon>201903150650302_AddDistrict.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\District.cs" />
     <Compile Include="Models\Feedback.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -220,6 +225,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903140730186_CountryChange.resx">
       <DependentUpon>201903140730186_CountryChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903150650302_AddDistrict.resx">
+      <DependentUpon>201903150650302_AddDistrict.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

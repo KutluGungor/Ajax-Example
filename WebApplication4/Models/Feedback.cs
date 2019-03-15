@@ -31,12 +31,19 @@ namespace WebApplication4.Models
         [ForeignKey("CountryId")]
         public virtual Country Country { get; set; }
 
-        [Required]
+        
         [Display(Name = "Şehir")]
         public Guid? CityId { get; set; }
         [ForeignKey("CityId")]
         [Display(Name = "Şehir")]
         public virtual City City { get; set; }
+
+        [Display(Name = "İlçe")]
+        public Guid? DistrictId { get; set; }
+        [Display(Name = "İlçe")]
+        [ForeignKey("DistrictId")]
+        public virtual District District { get; set; }
+
         [Required]
         [DataType(DataType.MultilineText)]
         [Display(Name = "Mesaj")]
